@@ -20,6 +20,13 @@ common base
   build-depends:
       base >= 4.12 && < 5
     , hasktorch >= 0.2 && < 0.3
+    , mtl
+    , libtorch-ffi
+    , vector
+    , pipes
+    , pipes-safe
+    , pipes-concurrency
+    , safe-exceptions
 
 common binary-base
   import: base
@@ -30,6 +37,9 @@ library
   import: base
   exposed-modules:
     HasktorchSkeleton
+    MnistMlp
+    StaticMnistCnn
+    Common
   hs-source-dirs: src
 
 executable example

@@ -1,6 +1,6 @@
 module Main where
 
-import HasktorchSkeleton
+import StaticMnistCnn (someFunc)
 
 main :: IO ()
-main = putStrLn "Hello Hasktorch!"
+main = someFunc

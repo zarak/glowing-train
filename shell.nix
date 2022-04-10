@@ -31,6 +31,8 @@ let
 
     shellHook = ''
       export CPATH=${torch}/include/torch/csrc/api/include
+      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/run/opengl-driver/lib
+      export DEVICE="cuda:0"
     '';
 
     inherit withHoogle;
