@@ -26,7 +26,25 @@ common base
     , pipes
     , pipes-safe
     , pipes-concurrency
-    , safe-exceptions
+    , safe-exceptions,
+        directory,
+        containers,
+        vector,
+        math-functions,
+        hmatrix,
+        vector-sized,
+        finite-typelits,
+        ghc-typelits-knownnat,
+        ghc-typelits-natnormalise,
+        deepseq,
+        process,
+        hmatrix-gsl,
+        primitive,
+        bytestring,
+        cassava,
+        async,
+        criterion,
+        optparse-applicative
 
 common binary-base
   import: base
@@ -40,7 +58,29 @@ library
     MnistMlp
     StaticMnistCnn
     Common
+    Goal.Core
+    Goal.Core.Util
+    Goal.Core.Project
+    Goal.Core.Circuit
+    Goal.Core.Vector.Storable
+    Goal.Core.Vector.Generic
+    Goal.Core.Vector.Generic.Internal
+    Goal.Core.Vector.Generic.Mutable
+    Goal.Core.Vector.Boxed
   hs-source-dirs: src
+  default-extensions:
+      ScopedTypeVariables,
+      ExplicitNamespaces,
+      TypeOperators,
+      KindSignatures,
+      DataKinds,
+      RankNTypes,
+      TypeFamilies,
+      FlexibleContexts,
+      MultiParamTypeClasses,
+      ConstraintKinds,
+      NoStarIsType,
+      FlexibleInstances
 
 executable example
   import: binary-base
