@@ -26,25 +26,24 @@ common base
     , pipes
     , pipes-safe
     , pipes-concurrency
-    , safe-exceptions,
-        directory,
-        containers,
-        vector,
-        math-functions,
-        hmatrix,
-        vector-sized,
-        finite-typelits,
-        ghc-typelits-knownnat,
-        ghc-typelits-natnormalise,
-        deepseq,
-        process,
-        hmatrix-gsl,
-        primitive,
-        bytestring,
-        cassava,
-        async,
-        criterion,
-        optparse-applicative
+    , safe-exceptions
+    , directory
+    , containers
+    , math-functions
+    , hmatrix
+    , vector-sized
+    , finite-typelits
+    , ghc-typelits-knownnat
+    , ghc-typelits-natnormalise
+    , deepseq
+    , process
+    , hmatrix-gsl
+    , primitive
+    , bytestring
+    , cassava
+    , async
+    , criterion
+    , optparse-applicative
 
 common binary-base
   import: base

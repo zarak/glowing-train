@@ -29,10 +29,10 @@ let
     # TODO: Set to true as soon as haskell.nix issue #231 is resolved.
     exactDeps = false;
 
+      # export LD_LIBRARY_PATH=$LIBRARY_PATH:/run/opengl-driver/lib
     shellHook = ''
       export CPATH=${torch}/include/torch/csrc/api/include
-      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/run/opengl-driver/lib
-      export DEVICE="cuda:0"
+      export LD_LIBRARY_PATH=/run/opengl-driver/lib
     '';
 
     inherit withHoogle;

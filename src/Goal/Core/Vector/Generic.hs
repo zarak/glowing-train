@@ -1,4 +1,5 @@
 {-# LANGUAGE StandaloneDeriving,GeneralizedNewtypeDeriving #-}
+    {-# LANGUAGE TypeApplications #-}
  {-# OPTIONS_GHC -fplugin=GHC.TypeLits.KnownNat.Solver -fplugin=GHC.TypeLits.Normalise -fconstraint-solver-iterations=10 #-}
 -- | Vectors and Matrices with statically typed dimensions.
 module Goal.Core.Vector.Generic
@@ -58,19 +59,29 @@ import qualified Data.Vector.Generic as G
 import qualified Data.Vector.Storable as S
 
 import qualified Torch as T
+import qualified Torch.Typed as TT
+import Torch.HList
+
+
 
 import Numeric.LinearAlgebra (Numeric)
 
 --- Vector ---
 
-
 type VectorClass = G.Vector
+
+
+t :: TT.Tensor '( 'TT.CUDA, 0) 'TT.Float '[10]
+t = TT.ones @'[ 10 ] @'TT.Float @'( 'TT.CUDA, 0 )
+
+
+x :: TT.Tensor '( 'TT.CUDA, 0) 'TT.Float '[20]
+x = TT.cat @0 ( t :. t :. HNil )
 
 -- | Create a 'Matrix' from a 'Vector' of 'Vector's which represent the rows.
 concat :: (KnownNat n, G.Vector v x, G.Vector v (Vector v n x)) => Vector v m (Vector v n x) -> Vector v (m*n) x
 {-# INLINE concat #-}
 concat = concatMap id
-
 
 
 -- | Collect two values into a length 2 'Vector'.
