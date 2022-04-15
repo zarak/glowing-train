@@ -78,6 +78,8 @@ t = TT.ones @'[ 10 ] @'TT.Float @'( 'TT.CUDA, 0 )
 x :: TT.Tensor '( 'TT.CUDA, 0) 'TT.Float '[20]
 x = TT.cat @0 ( t :. t :. HNil )
 
+
+
 -- | Create a 'Matrix' from a 'Vector' of 'Vector's which represent the rows.
 concat :: (KnownNat n, G.Vector v x, G.Vector v (Vector v n x)) => Vector v m (Vector v n x) -> Vector v (m*n) x
 {-# INLINE concat #-}
@@ -116,6 +118,7 @@ range mn mx =
 
 
 --- Matrix ---
+newtype Matrix' (m :: Nat) (n :: Nat) dtype = Matrix' { toVector' :: TT.Tensor '( 'TT.CUDA, 0) dtype '[m,n] }
 
 
 -- | Matrices with static dimensions.
