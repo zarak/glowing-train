@@ -57,6 +57,7 @@ import Prelude hiding (concatMap,concat,map,sum,replicate)
 
 import qualified Data.Vector.Generic as G
 import qualified Data.Vector.Storable as S
+import qualified Data.Vector.Sized as DVS
 
 import qualified Torch as T
 import qualified Torch.Typed as TT
@@ -65,6 +66,7 @@ import Torch.HList
 
 
 import Numeric.LinearAlgebra (Numeric)
+import Data.Maybe (fromJust)
 
 --- Vector ---
 
@@ -78,6 +80,11 @@ t = TT.ones @'[ 10 ] @'TT.Float @'( 'TT.CUDA, 0 )
 x :: TT.Tensor '( 'TT.CUDA, 0) 'TT.Float '[20]
 x = TT.cat @0 ( t :. t :. HNil )
 
+s :: DVS.Vector 3 (TT.Tensor '( 'TT.CUDA, 0) 'TT.Float '[10])
+s = fromJust $ DVS.fromList @3 [t, t, t]
+
+fromRows' :: KnownNat n => DVS.Vector n (TT.Tensor device dtype shape) -> TT.Tensor device dtype (n : shape)
+fromRows' = TT.vecStack @0
 
 
 -- | Create a 'Matrix' from a 'Vector' of 'Vector's which represent the rows.
@@ -118,8 +125,7 @@ range mn mx =
 
 
 --- Matrix ---
-newtype Matrix' (m :: Nat) (n :: Nat) dtype = Matrix' { toVector' :: TT.Tensor '( 'TT.CUDA, 0) dtype '[m,n] }
-
+newtype Matrix' (m :: Nat) (n :: Nat) dtype = Matrix' { toVector' :: TT.Tensor '( 'TT.CUDA, 0) dtype '[m*n] } deriving Show
 
 -- | Matrices with static dimensions.
 newtype Matrix v (m :: Nat) (n :: Nat) a = Matrix { toVector :: Vector v (m*n) a }
