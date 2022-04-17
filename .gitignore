@@ -10,3 +10,4 @@ result*
 *.pt
 data
 .direnv
+tmate*

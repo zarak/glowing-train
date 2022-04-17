@@ -84,7 +84,8 @@ dimension = dimension0 Proxy
 --- Points ---
 
 newtype Point' c x =
-    Point' { coordinates' :: TT.Tensor '( 'TT.CUDA, 0 ) 'TT.Double '[Dimension x] }
+    Point' 
+        { coordinates' :: TT.Tensor '( 'TT.CUDA, 0 ) 'TT.Double '[Dimension x] }
     deriving Show
 
 -- | A 'Point' on a 'Manifold'. The phantom type @m@ represents the 'Manifold', and the phantom type
