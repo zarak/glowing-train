@@ -44,7 +44,12 @@ common base
     , async
     , criterion
     , optparse-applicative
-
+    , mwc-random
+    , hmatrix-special
+    , parallel
+    , statistics
+    , indexed-list-literals
+    , ad
 common binary-base
   import: base
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
@@ -66,6 +71,22 @@ library
     Goal.Core.Vector.Generic.Internal
     Goal.Core.Vector.Generic.Mutable
     Goal.Core.Vector.Boxed
+    Goal.Geometry
+    Goal.Geometry.Manifold
+    Goal.Geometry.Vector
+    Goal.Geometry.Map
+    Goal.Geometry.Map.Linear
+    Goal.Geometry.Map.Linear.Convolutional
+    Goal.Geometry.Map.NeuralNetwork
+    Goal.Geometry.Differential
+    Goal.Geometry.Differential.GradientPursuit
+    Goal.Probability
+    Goal.Probability.Statistical
+    Goal.Probability.ExponentialFamily
+    Goal.Probability.Distributions
+    Goal.Probability.Distributions.CoMPoisson
+    Goal.Probability.Distributions.Gaussian
+    Goal.Probability.Conditional
   hs-source-dirs: src
   default-extensions:
       ScopedTypeVariables,
@@ -79,7 +100,9 @@ library
       MultiParamTypeClasses,
       ConstraintKinds,
       NoStarIsType,
-      FlexibleInstances
+      FlexibleInstances,
+      GeneralizedNewtypeDeriving,
+      StandaloneDeriving
 
 executable example
   import: binary-base

@@ -1,5 +1,7 @@
+{-# LANGUAGE TypeApplications #-}
  {-# OPTIONS_GHC -fplugin=GHC.TypeLits.KnownNat.Solver -fplugin=GHC.TypeLits.Normalise -fconstraint-solver-iterations=10 #-}
 -- | Vectors and Matrices with statically typed dimensions based on storable vectors and using HMatrix where possible.
+{-# LANGUAGE AllowAmbiguousTypes #-}
 module Goal.Core.Vector.Storable
     ( -- * Vector
       module Data.Vector.Storable.Sized
@@ -79,6 +81,9 @@ module Goal.Core.Vector.Storable
 --- Imports ---
 
 
+import qualified Torch.Typed as TT
+import qualified Torch as T
+
 -- Goal --
 
 import Goal.Core.Util hiding (average,breakEvery,range)
@@ -102,6 +107,20 @@ import qualified Data.Vector.Generic.Sized.Internal as G
 import qualified Numeric.LinearAlgebra as H
 import qualified Data.List as L
 
+
+--- Torch ---
+dotProduct'
+  :: TT.DotDTypeIsValid device dtype =>
+     TT.Tensor device dtype '[size]
+     -> TT.Tensor device dtype '[size] -> TT.Tensor device dtype '[]
+dotProduct' = TT.dot
+
+
+dotProduct'' 
+    :: TT.Tensor device1 dtype shape1 
+    -> TT.Tensor device2 dtype shape2 
+    -> T.Tensor
+dotProduct'' t1 t2 = T.dot (TT.toDynamic t1) (TT.toDynamic t2)
 
 --- Generic ---
 
