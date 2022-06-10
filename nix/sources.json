@@ -53,10 +53,10 @@
         "homepage": null,
         "owner": "hasktorch",
         "repo": "libtorch-nix",
-        "rev": "d14b0fd10b96d192b92b8ccc7254ade4b3489331",
-        "sha256": "1k2xax64hfmaw5kzmx3w242z62xckjihraa75vvdz8v27in60zqi",
+        "rev": "fbf5bb828c5f1eff0f4cf0c88c6eb436845273b3",
+        "sha256": "124wpd8lvqrx14hjihphzg5qb7dnvy9rw39ihzg9p7yfyqaknks3",
         "type": "tarball",
-        "url": "https://github.com/hasktorch/libtorch-nix/archive/d14b0fd10b96d192b92b8ccc7254ade4b3489331.tar.gz",
+        "url": "https://github.com/hasktorch/libtorch-nix/archive/fbf5bb828c5f1eff0f4cf0c88c6eb436845273b3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
